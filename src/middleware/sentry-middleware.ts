@@ -3,6 +3,11 @@ import { wrapRequestHandler } from "@sentry/cloudflare";
 import { defineMiddleware } from "astro/middleware";
 
 export const sentryMiddleware = defineMiddleware(async (context, next) => {
+  console.log(
+    "sentryMiddleware",
+    (context.locals as any).runtime.ctx,
+    import.meta.env.ASTRO_SERVER_SENTRY_DSN
+  );
   return wrapRequestHandler(
     {
       options: {
